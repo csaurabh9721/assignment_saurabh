@@ -34,97 +34,75 @@ class _CounterListState extends State<CounterList> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Row(
-        children: [
-          Expanded(
-            child: Container(
-              height: 55,
-              padding: const EdgeInsets.only(left: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: TextField(
-                      controller: _timerCounterController
-                          .timers[widget.index].controller,
-                      keyboardType: TextInputType.number,
-                      onChanged: _onChange,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Enter Second",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const VerticalDivider(
+      () => Container(
+        height: 55,
+        padding: const EdgeInsets.only(left: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: TextField(
+                controller: _timerCounterController
+                    .timers[widget.index].controller,
+                keyboardType: TextInputType.number,
+                onChanged: _onChange,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Enter Second",
+                  hintStyle: TextStyle(
                     color: Colors.grey,
+                    fontSize: 12,
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Center(
-                      child: Text(
-                        '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                  const VerticalDivider(
-                    color: Colors.grey,
-                    width: 0,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: InkWell(
-                      onTap: _startCountDown,
-                      child: Container(
-                        height: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(6),
-                              bottomRight: Radius.circular(6)),
-                          color: Colors.purple,
-                        ),
-                        child: Text(
-                          _timerCounterController
-                                  .timers[widget.index].isRunning.value
-                              ? 'Pause'
-                              : 'Start',
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-          // const SizedBox(
-          //   width: 8,
-          // ),
-          // InkWell(
-          //   onTap: () {
-          //     if (_timer != null) {
-          //       _timer!.cancel();
-          //     }
-          //     _timerCounterController.removeTimer(widget.index);
-          //   },
-          //   child: const Icon(
-          //     Icons.delete_forever_sharp,
-          //     color: Colors.red,
-          //     size: 30,
-          //   ),
-          // ),
-        ],
+            const VerticalDivider(
+              color: Colors.grey,
+            ),
+            Expanded(
+              flex: 3,
+              child: Center(
+                child: Text(
+                  '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
+            const VerticalDivider(
+              color: Colors.grey,
+              width: 0,
+            ),
+            Expanded(
+              flex: 2,
+              child: InkWell(
+                onTap: _startCountDown,
+                child: Container(
+                  height: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(6),
+                        bottomRight: Radius.circular(6)),
+                    color: Colors.purple,
+                  ),
+                  child: Text(
+                    _timerCounterController
+                            .timers[widget.index].isRunning.value
+                        ? 'Pause'
+                        : 'Start',
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
