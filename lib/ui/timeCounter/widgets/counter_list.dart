@@ -108,22 +108,22 @@ class _CounterListState extends State<CounterList> {
               ),
             ),
           ),
-          const SizedBox(
-            width: 8,
-          ),
-          InkWell(
-            onTap: () {
-              if (_timer != null) {
-                _timer!.cancel();
-              }
-              _timerCounterController.removeTimer(widget.index);
-            },
-            child: const Icon(
-              Icons.delete_forever_sharp,
-              color: Colors.red,
-              size: 30,
-            ),
-          ),
+          // const SizedBox(
+          //   width: 8,
+          // ),
+          // InkWell(
+          //   onTap: () {
+          //     if (_timer != null) {
+          //       _timer!.cancel();
+          //     }
+          //     _timerCounterController.removeTimer(widget.index);
+          //   },
+          //   child: const Icon(
+          //     Icons.delete_forever_sharp,
+          //     color: Colors.red,
+          //     size: 30,
+          //   ),
+          // ),
         ],
       ),
     );
@@ -146,10 +146,15 @@ class _CounterListState extends State<CounterList> {
     hours.value = inputSecond ~/ 3600;
     minutes.value = (inputSecond % 3600) ~/ 60;
     seconds.value = inputSecond % 60;
+
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_timerCounterController.timers[widget.index].isRunning.value &&
           inputSecond > 0) {
         inputSecond--;
+        if(inputSecond == 0){
+          _timerCounterController.timers[widget.index].isRunning.value = false;
+          _timerCounterController.timers[widget.index].controller.clear();
+        }
         hours.value = inputSecond ~/ 3600;
         minutes.value = (inputSecond % 3600) ~/ 60;
         seconds.value = inputSecond % 60;

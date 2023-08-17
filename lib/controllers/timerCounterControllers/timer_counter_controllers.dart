@@ -11,7 +11,7 @@ class TimerCounterController extends GetxController {
         controller: TextEditingController(),
         isRunning: false.obs));
   }
-  void removeTimer(int index) {
-    timers.removeAt(index);
-  }
+  // void removeTimer(int index) {
+  //   timers.removeAt(index);
+  // }
 }
